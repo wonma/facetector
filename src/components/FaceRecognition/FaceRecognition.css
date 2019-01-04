@@ -1,4 +1,43 @@
+.center {
+    display: flex;
+    justify-content: center;
+}
+
 .search-result {
     margin-top: 2.5rem;
     border: 1px solid orange;
+    position: absolute;
+}
+
+svg {
+    width: 60px;
+    height: 60px;
+}
+
+.search-result__img {
+    display: block;
+}
+
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    cursor: pointer;
+    color: blue;
+    font-size: 1.5rem;
+}
+
+.bounding-box {
+    position: absolute;
+    box-shadow: inset 0 0 0 3px #1ff4e4;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    cursor: pointer;
 }

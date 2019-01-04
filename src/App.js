@@ -14,9 +14,9 @@ const particleOptions = {
     number: {
       value: 50,
       density: {
-        enable: true,
-        value_area: 800
-      },
+      enable: true,
+      value_area: 800
+    },
     },
     size: {
       value: 3
@@ -40,9 +40,31 @@ class App extends Component {
     super()
     this.state = {
       input:'',
-      imgUrl:''
+      imgUrl:'',
+      box: {},  // position value after caculation
+      loading: 'none'
     }
   }
+
+  calculatePosition = (resp) => {
+    const positionInfo = resp.outputs[0].data.regions[0].region_info.bounding_box
+    const {top_row, left_col, bottom_row, right_col} = positionInfo
+    const img = document.querySelector('#targetImg')
+    const width = Number(img.width)
+    const height = Number(img.height)
+
+    return {
+      top: height * top_row,
+      right: width - width * right_col ,
+      bottom: height - height * bottom_row,
+      left: width * left_col
+    }
+  }
+
+  updateBoxsize = (box) => {
+    this.setState({box: box})
+  }
+
     //콜백 될 기능 정의
   onInputChange = (e) => {
     this.setState({
@@ -51,20 +73,21 @@ class App extends Component {
   }
 
     //콜백 될 기능 정의
-  onClickEvent = async () => {
-    await this.setState({
-      imgUrl: this.state.input
+  onClickEvent = () => {
+    this.setState({
+      imgUrl: this.state.input,
+      box: {},
+      loading: 'block'
     })
 
-    app.models.predict('eeed0b6733a644cea07cf4c60f87ebb7', this.state.imgUrl).then(
-      function (response) {
-        console.log(response)
-      },
-      function (err) {
-        // there was an error
-      }
-    );
-
+    app.models.predict('a403429f2ddf4b49b307e318f00e528b', this.state.input)
+      .then(response => {
+        if(response) {
+          this.updateBoxsize(this.calculatePosition(response))
+          this.setState({loading: 'none'})
+        } 
+      })
+      .catch(err => console.log('Oops! Error occured!', err))
   }
 
   render() {
@@ -79,7 +102,9 @@ class App extends Component {
           onInputChange={this.onInputChange} 
           onClickEvent={this.onClickEvent}/>
         <FaceRecognition 
-          imageUrl={this.state.imgUrl} />
+          imageUrl={this.state.imgUrl} 
+          boxPosition={this.state.box}
+          isLoading={this.state.loading} />
       </div>
     );
   }
