@@ -42,7 +42,8 @@ class App extends Component {
       input:'',
       imgUrl:'',
       box: {},  // position value after caculation
-      loading: 'none'
+      loading: 'none',
+      noImgAtStart: 'none'
     }
   }
 
@@ -76,18 +77,23 @@ class App extends Component {
   onClickEvent = () => {
     this.setState({
       imgUrl: this.state.input,
-      box: {},
-      loading: 'block'
+      noImgAtStart: 'block',
+      box: {}
     })
 
     app.models.predict('a403429f2ddf4b49b307e318f00e528b', this.state.input)
       .then(response => {
         if(response) {
+          console.log(response)
           this.updateBoxsize(this.calculatePosition(response))
           this.setState({loading: 'none'})
         } 
       })
       .catch(err => console.log('Oops! Error occured!', err))
+  }
+
+  onImgLoad = () => {
+    this.setState({ loading: 'block' })
   }
 
   render() {
@@ -104,7 +110,9 @@ class App extends Component {
         <FaceRecognition 
           imageUrl={this.state.imgUrl} 
           boxPosition={this.state.box}
-          isLoading={this.state.loading} />
+          isLoading={this.state.loading} 
+          noImgAtStart={this.state.noImgAtStart}
+          onImgLoad={this.onImgLoad} />
       </div>
     );
   }
