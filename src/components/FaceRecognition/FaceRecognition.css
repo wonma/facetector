@@ -1,12 +1,37 @@
 .center {
     display: flex;
     justify-content: center;
+    position: relative;
+}
+
+.hide-text {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    display: none;
+    color: white;
+    background-color: red;
 }
 
 .search-result {
     margin-top: 2.5rem;
     border: 1px solid orange;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.search-noResult {
+    margin-top: 2.5rem;
+    font-size: 1rem;
+    color: rgb(255, 82, 19);
+}
+
+.search-before {
+    margin-top: 2.5rem;
+    font-size: 1rem;
+    color: rgb(19, 192, 255);
 }
 
 svg {

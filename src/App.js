@@ -41,60 +41,76 @@ class App extends Component {
     this.state = {
       input:'',
       imgUrl:'',
-      box: {},  // position value after caculation
+      box: [],  // position value after caculation
       loading: 'none',
-      noImgAtStart: 'none'
+      noImgAtStart: 'none',
+      imgLoaded: false,
+      err: 'noErr',
     }
   }
 
   calculatePosition = (resp) => {
-    const positionInfo = resp.outputs[0].data.regions[0].region_info.bounding_box
-    const {top_row, left_col, bottom_row, right_col} = positionInfo
+    const arrayOfBoxes = []
     const img = document.querySelector('#targetImg')
     const width = Number(img.width)
     const height = Number(img.height)
 
-    return {
-      top: height * top_row,
-      right: width - width * right_col ,
-      bottom: height - height * bottom_row,
-      left: width * left_col
-    }
+    resp.outputs[0].data.regions.forEach(eachRegion => {
+      const { top_row, left_col, bottom_row, right_col } = eachRegion.region_info.bounding_box
+      const caculatedResult = {
+        top: height * top_row,
+        right: width - width * right_col,
+        bottom: height - height * bottom_row,
+        left: width * left_col
+      }
+      arrayOfBoxes.push(caculatedResult)
+    })
+    
+    return arrayOfBoxes
   }
 
   updateBoxsize = (box) => {
-    this.setState({box: box})
+    this.setState({ box: box})
   }
 
-    //콜백 될 기능 정의
   onInputChange = (e) => {
     this.setState({
       input: e.target.value
     })
   }
 
-    //콜백 될 기능 정의
+  onImgLoadErr = () => {
+    document.querySelector('#img-box').classList.add('hide-text')
+  }
+
+  onImgLoad = () => {
+    document.querySelector('#img-box').classList.remove('hide-text')
+  }
+
   onClickEvent = () => {
+    
     this.setState({
       imgUrl: this.state.input,
       noImgAtStart: 'block',
-      box: {}
+      box: [],
+      loading: 'block',
+      err: 'noErr'
     })
 
     app.models.predict('a403429f2ddf4b49b307e318f00e528b', this.state.input)
       .then(response => {
-        if(response) {
-          console.log(response)
+        if (response) {
           this.updateBoxsize(this.calculatePosition(response))
-          this.setState({loading: 'none'})
-        } 
+          this.setState({ loading: 'none', err: 'noErr' })
+        }
       })
-      .catch(err => console.log('Oops! Error occured!', err))
+      .catch(err => {
+        console.log('Oops! Error Occurred',err)
+        this.setState({err: 'err'})
+      })
   }
 
-  onImgLoad = () => {
-    this.setState({ loading: 'block' })
-  }
+  
 
   render() {
     return (
@@ -110,8 +126,10 @@ class App extends Component {
         <FaceRecognition 
           imageUrl={this.state.imgUrl} 
           boxPosition={this.state.box}
-          isLoading={this.state.loading} 
+          isLoading={this.state.loading}
+          onError={this.state.err} 
           noImgAtStart={this.state.noImgAtStart}
+          onImgLoadErr={this.onImgLoadErr}
           onImgLoad={this.onImgLoad} />
       </div>
     );
