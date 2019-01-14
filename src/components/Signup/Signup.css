@@ -1,0 +1,16 @@
+.sign-up {
+    border: 1px solid orange;
+    max-width: 30rem;
+}
+
+.sign-up__form {
+    border: 1px solid brown;
+}
+
+.sign-up__btn {
+    border: 1px solid brown;
+}
+
+.sign-up__extra-btn {
+    border: 1px solid brown;
+}

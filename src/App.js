@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import Header from './components/Header/Header'
+import Hero from './components/Hero/Hero'
 import ImageSearchForm from './components/ImageSearchForm/ImageSearchForm'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition'
 import Rank from './components/Rank/Rank'
@@ -41,11 +42,12 @@ class App extends Component {
     this.state = {
       input:'',
       imgUrl:'',
-      box: [],  // position value after caculation
-      loading: 'none',
-      noImgAtStart: 'none',
+      box: [],  // coordinates
+      loading: 'none', // loading svg
+      noImgAtStart: 'none', 
       imgLoaded: false,
       err: 'noErr',
+      route: 'signin'
     }
   }
 
@@ -110,7 +112,9 @@ class App extends Component {
       })
   }
 
-  
+  onRouteChange = (routeName) => {
+    this.setState({ route: routeName})
+  }
 
   render() {
     return (
@@ -118,19 +122,25 @@ class App extends Component {
         <Particles className='particles'
           params={particleOptions}
         />
-        <Header />  
-        <Rank />  
-        <ImageSearchForm 
-          onInputChange={this.onInputChange} 
-          onClickEvent={this.onClickEvent}/>
-        <FaceRecognition 
-          imageUrl={this.state.imgUrl} 
-          boxPosition={this.state.box}
-          isLoading={this.state.loading}
-          onError={this.state.err} 
-          noImgAtStart={this.state.noImgAtStart}
-          onImgLoadErr={this.onImgLoadErr}
-          onImgLoad={this.onImgLoad} />
+        <Header routeState={this.state.route} onRouteChange={this.onRouteChange} />
+        {
+          this.state.route === 'signin' || this.state.route === 'signup' 
+          ? <Hero routeState={this.state.route} onRouteChange={this.onRouteChange} />
+          : <div>
+              <Rank />
+              <ImageSearchForm
+                onInputChange={this.onInputChange}
+                onClickEvent={this.onClickEvent} />
+              <FaceRecognition
+                imageUrl={this.state.imgUrl}
+                boxPosition={this.state.box}
+                isLoading={this.state.loading}
+                onError={this.state.err}
+                noImgAtStart={this.state.noImgAtStart}
+                onImgLoadErr={this.onImgLoadErr}
+                onImgLoad={this.onImgLoad} />
+            </div>
+        }        
       </div>
     );
   }

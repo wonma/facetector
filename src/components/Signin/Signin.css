@@ -1,0 +1,29 @@
+.sign-in {
+    border: 1px solid orange;
+    background-color:pink;
+
+}
+
+.sign-in__form {
+    border: 1px solid brown;
+    margin-top: 1rem;
+}
+
+.sign-in__title {
+    color: #353535;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+.sign-in__btn {
+    border: 1px solid brown;
+    padding:.7rem 2rem;
+    /* color: #fff; */
+    background-color:aquamarine;
+
+}
+
+.sign-in__extra-btn {
+    border: 1px solid brown;
+}

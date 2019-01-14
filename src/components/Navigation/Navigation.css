@@ -3,6 +3,10 @@
     justify-content: flex-end;
 }
 
-.navi__signup {
+.navi__menu {
+    margin-left: 1rem;
+}
 
+.navi__logout {
+    cursor: pointer;
 }
