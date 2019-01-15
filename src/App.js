@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
+
 import Header from './components/Header/Header'
 import Hero from './components/Hero/Hero'
 import ImageSearchForm from './components/ImageSearchForm/ImageSearchForm'
@@ -17,7 +18,7 @@ const particleOptions = {
       density: {
       enable: true,
       value_area: 800
-    },
+      }
     },
     size: {
       value: 3
@@ -50,6 +51,12 @@ class App extends Component {
       route: 'signin'
     }
   }
+
+  // componentDidMount() {
+  //   fetch('http://localhost:3000') // 헉..... 3001로 했었음..
+  //     .then(response => response.json())
+  // }
+
 
   calculatePosition = (resp) => {
     const arrayOfBoxes = []

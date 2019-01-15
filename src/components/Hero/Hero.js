@@ -11,12 +11,12 @@ const Hero = ({onRouteChange, routeState}) => {
             <div className='hero__img-box'>
                 <img className='hero__img' src={heroImg} alt='main image' />
             </div>
-            {
-                routeState === 'signin'
-              ? <Signin onRouteChange={onRouteChange} className='hero__form' />
-              : <Signup onRouteChange={onRouteChange} className='hero__form' />
+        {
+            routeState === 'signin'
+            ? <Signin onRouteChange={onRouteChange} className='hero__form' />
+            : <Signup onRouteChange={onRouteChange} className='hero__form' />
 
-            }
+        }
         </div>
     )
 }
