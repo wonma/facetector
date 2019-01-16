@@ -1,33 +1,78 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './Signup.css'
 
-const Signup = ({ onRouteChange }) => {
-    return (
-        <form className="sign-up">
-            {/* Sign up */}
-            <fieldset id="sign-up" className="sign-up__form">
-                <legend className="f4 fw6 ph0 mh0">Ready to have Fun? Please sign up!</legend>
-                <div className="mt3">
-                    <label className="" htmlFor="email-address">Email</label>
-                    <input className="" type="email" name="email-address" id="email-address" />
-                </div>
-                <div className="mv3">
-                    <label className="" htmlFor="password">Password</label>
-                    <input className="" type="password" name="password" id="password" />
-                </div>
-            </fieldset>
+class Signup extends Component{
+    constructor(props) {
+        super(props)
+        this.state = {
+            signUpName: '',
+            signUpEmail: '',
+            signUpPassword: ''
+        }
+    }
 
-            {/* Sign up Button */}
-            <div className="sign-up__btn">
-                <input onClick={() => onRouteChange('home')} className="" type="submit" value="Sign up" />
-            </div>
+    onNameChange = (e) => {
+        this.setState({ signUpName: e.target.value })
+    }  
+    
+    onEmailChange = (e) => {
+        this.setState({ signUpEmail: e.target.value })
+    }
 
-            {/* Extra Button */}
-            <div className="sign-up__extra-btn">
-                <a href="#0" onClick={() => onRouteChange('signin')} className="">Aready have an id?</a>
+    onPasswordChange = (e) => {
+        this.setState({ signUpPassword: e.target.value })
+    }
+
+    onSubmit = () => {
+        fetch('http://localhost:3000/register', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: this.state.signUpName,
+                email: this.state.signUpEmail,
+                password: this.state.signUpPassword
+            })
+        }).then(response => response.json())
+            .then(user => {
+                if (user.id) {
+                    this.props.onRouteChange('home')
+                    this.props.loadUser(user)
+                }
+            })
+    }
+
+    render() {
+        return (
+            <div className="sign-up">
+                {/* Sign up */}
+                <fieldset id="sign-up" className="sign-up__form">
+                    <legend className="sign-up__title">Create your id</legend>
+                    <div className="mt3">
+                        <label className="" htmlFor="name">Name</label>
+                        <input className="" onChange={this.onNameChange} type="email" name="name" id="name" />
+                    </div>
+                    <div className="mt3">
+                        <label className="" htmlFor="email-address">Email</label>
+                        <input className="" onChange={this.onEmailChange} type="email" name="email-address" id="email-address" />
+                    </div>
+                    <div className="mv3">
+                        <label className="" htmlFor="password">Password</label>
+                        <input className="" onChange={this.onPasswordChange} type="password" name="password" id="password" />
+                    </div>
+                </fieldset>
+
+                {/* Sign up Button */}
+
+                <input onClick={this.onSubmit} className="sign-up__btn" type="submit" value="Sign up" />
+
+
+                {/* Extra Button */}
+                <div className="sign-up__extra-btn">
+                    <a href="#0" onClick={() => this.props.onRouteChange('signin')} className="">Aready have an id?</a>
+                </div>
             </div>
-        </form>
-    )
+        )
+    }
 }
 
 export default Signup

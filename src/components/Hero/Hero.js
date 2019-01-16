@@ -5,7 +5,7 @@ import heroImg from '../../images/hero.JPG'
 import Signup from '../Signup/Signup'
 
 
-const Hero = ({onRouteChange, routeState}) => {
+const Hero = ({loadUser, onRouteChange, routeState}) => {
     return (
         <div className='hero'>
             <div className='hero__img-box'>
@@ -13,8 +13,8 @@ const Hero = ({onRouteChange, routeState}) => {
             </div>
         {
             routeState === 'signin'
-            ? <Signin onRouteChange={onRouteChange} className='hero__form' />
-            : <Signup onRouteChange={onRouteChange} className='hero__form' />
+            ? <Signin loadUser={loadUser} onRouteChange={onRouteChange} className='hero__form' />
+            : <Signup loadUser={loadUser} onRouteChange={onRouteChange} className='hero__form' />
 
         }
         </div>

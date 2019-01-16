@@ -48,7 +48,12 @@ class App extends Component {
       noImgAtStart: 'none', 
       imgLoaded: false,
       err: 'noErr',
-      route: 'signin'
+      route: 'signin',
+      user: {
+        name: '',
+        email: '',
+        entries: '',
+      }
     }
   }
 
@@ -80,6 +85,14 @@ class App extends Component {
 
   updateBoxsize = (box) => {
     this.setState({ box: box})
+  }
+
+  loadUser = (data) => {
+    this.setState({user: {
+      name: data.name,
+      email: data.email,
+      entries: data.entries,
+    }})
   }
 
   onInputChange = (e) => {
@@ -132,9 +145,9 @@ class App extends Component {
         <Header routeState={this.state.route} onRouteChange={this.onRouteChange} />
         {
           this.state.route === 'signin' || this.state.route === 'signup' 
-          ? <Hero routeState={this.state.route} onRouteChange={this.onRouteChange} />
+            ? <Hero loadUser={this.loadUser} routeState={this.state.route} onRouteChange={this.onRouteChange} />
           : <div>
-              <Rank />
+              <Rank name={this.state.user.name} rank={this.state.user.entries} />
               <ImageSearchForm
                 onInputChange={this.onInputChange}
                 onClickEvent={this.onClickEvent} />

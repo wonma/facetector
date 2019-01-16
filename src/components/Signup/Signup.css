@@ -1,14 +1,27 @@
 .sign-up {
     border: 1px solid orange;
-    max-width: 30rem;
+    background-color:pink;
+
 }
 
 .sign-up__form {
     border: 1px solid brown;
+    margin-top: 1rem;
+}
+
+.sign-up__title {
+    color: #353535;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 1rem;
 }
 
 .sign-up__btn {
     border: 1px solid brown;
+    padding:.7rem 2rem;
+    /* color: #fff; */
+    background-color:aquamarine;
+
 }
 
 .sign-up__extra-btn {

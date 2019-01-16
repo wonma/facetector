@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Signin.css'
+import { userInfo } from 'os';
 
 class Signin extends Component {
 
@@ -28,9 +29,10 @@ class Signin extends Component {
                 password: this.state.signInPassword
             })
         }).then(response => response.json())
-        .then(data => {
-            if (data === 'Success') {
+        .then(user => {
+            if (user.id) {
                 this.props.onRouteChange('home')
+                this.props.loadUser(user)
             } 
         })
     }
