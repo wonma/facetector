@@ -50,6 +50,7 @@ class App extends Component {
       err: 'noErr',
       route: 'signin',
       user: {
+        id: '',
         name: '',
         email: '',
         entries: '',
@@ -89,6 +90,7 @@ class App extends Component {
 
   loadUser = (data) => {
     this.setState({user: {
+      id: data.id,
       name: data.name,
       email: data.email,
       entries: data.entries,
@@ -124,6 +126,18 @@ class App extends Component {
         if (response) {
           this.updateBoxsize(this.calculatePosition(response))
           this.setState({ loading: 'none', err: 'noErr' })
+          fetch('http://localhost:3000/image', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              id: this.state.user.id
+            })
+          }).then(response => response.json())
+            .then(data => {
+              console.log(data)
+              this.setState(Object.assign(this.state.user, {entries: data}))
+            })
+
         }
       })
       .catch(err => {
