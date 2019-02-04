@@ -8,7 +8,8 @@ class Signin extends Component {
         super(props)
         this.state = {
             signInEmail: '',
-            signInPassword: ''
+            signInPassword: '',
+            failFrom:''
         }
     }
 
@@ -18,6 +19,12 @@ class Signin extends Component {
 
     onPasswordChange = (e) => {
         this.setState({ signInPassword: e.target.value })
+    }
+
+
+    onWrongUser = () => {
+        document.querySelector('#check-message').classList.remove('show-check-message')
+        document.querySelector('#check-message').classList.add('show-check-message')
     }
 
     onSubmit = () => {
@@ -30,11 +37,18 @@ class Signin extends Component {
             })
         }).then(response => response.json())
         .then(user => {
-            if (user.id) {
-                this.props.onRouteChange('home')
-                this.props.loadUser(user)
-            } 
-        }) 
+            if (user.id) {                          // 성공한 후 반응 두 가지
+                this.props.onRouteChange('home')    // (1) home 화면 render
+                this.props.loadUser(user)           // (2) user정보 넘겨서 state 업뎃하기
+            } else if (user === 'No blank fields' ) {
+                this.onWrongUser()
+                this.setState({failFrom: 'blank'})
+            } else if (user === 'Unable to sign in') {
+                this.onWrongUser()
+                this.setState({ failFrom: 'wrongInfo' })
+            }
+        })
+        .catch(err => console.log('Failed to fetch')) 
     }
 
     render() {
@@ -54,7 +68,12 @@ class Signin extends Component {
                 </fieldset>
 
                 {/* Sign in Button */}
-
+                <div id="check-message" className="no-show-check-message">
+                    {   this.state.failFrom === 'blank'
+                        ? <p >Check out email or password</p>
+                        : <p >Wrong Email or password</p>
+                    }
+                </div>
                 <input onClick={this.onSubmit} className="sign-in__btn" type="button" value="Sign in" />
 
 

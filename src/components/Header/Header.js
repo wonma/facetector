@@ -3,11 +3,11 @@ import './Header.css'
 import Navigation from '../Navigation/Navigation'
 import Logo from '../Logo/Logo'
 
-const Header = ({ onRouteChange, routeState }) => {
+const Header = ({ onRouteChange, routeState, onLogOut }) => {
     return (
         <div className='header'>
             <Logo />
-            <Navigation routeState={routeState} onRouteChange={onRouteChange} /> 
+            <Navigation routeState={routeState} onRouteChange={onRouteChange} onLogOut={onLogOut} /> 
         </div>
     )
 }

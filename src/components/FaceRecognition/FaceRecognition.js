@@ -3,14 +3,24 @@ import BoundingBoxes from '../BoundingBoxes/BoundingBoxes'
 import './FaceRecognition.css'
 
 
-const FaceRecognition = ({ imageUrl, boxPosition, isLoading, onError, noImgAtStart, onImgLoad, onImgLoadErr }) => {
+const FaceRecognition = ({ imageUrl, boxPosition, isLoading, isError, noImgAtStart, onImgLoad, onImgLoadErr }) => {
     return (
             <div className='center' style={{ display: noImgAtStart }} >
-                { onError === 'noErr'
-                    ? <div className='search-result' >
+                { isError === 'noErr' // 이미지 좌표 fetching실패 시 onError값이 err가 되며 대체문구가 렌더된다
+                    // (a) Failed Result
+                    ? <div className='search-result' > 
+                    
                         <div id='img-box'>
-                            <img className='search-result__img' id='targetImg' onLoad={onImgLoad} onError={onImgLoadErr} src={imageUrl} alt='detection result' width='500px' height='auto' />
+                            <img className='search-result__img' //(display:block) 
+                                id='targetImg' 
+                                onLoad={onImgLoad}     // -->이건 이미지가 다 로딩되어 떴을 때를 의미한다
+                                onError={onImgLoadErr} // --> 여기서 'onError' attribute의 존재는 img자체에 error가 났을 시
+                                src={imageUrl}         //     onImgLoadErr를 작동시키라는 뜻이다 (div #img-box의 display에 영향을 줌)
+                                alt='detection result' 
+                                width='500px' 
+                                height='auto' />
                         </div>
+                        
                         <div className='loading' style={{display: isLoading}}>
                             <svg version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enableBackground="new 0 0 100 100" xmlSpace="preserve">
                                 <path fill="#1ff4e4" d="M31.6,3.5C5.9,13.6-6.6,42.7,3.5,68.4c10.1,25.7,39.2,38.3,64.9,28.1l-3.1-7.9c-21.3,8.4-45.4-2-53.8-23.3
@@ -27,8 +37,11 @@ const FaceRecognition = ({ imageUrl, boxPosition, isLoading, onError, noImgAtSta
                                     </path>
                             </svg>
                         </div>
+
                         <BoundingBoxes boxPosition={boxPosition} />
                       </div>
+
+                    // (b) No Result
                     : <div className='search-noResult'>
                         {'Please check the image address.'}
                       </div>

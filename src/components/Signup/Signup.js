@@ -39,6 +39,7 @@ class Signup extends Component{
                     this.props.loadUser(user)
                 }
             })
+            .catch(err => {console.log('unable to register')})
     }
 
     render() {

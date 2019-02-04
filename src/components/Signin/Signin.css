@@ -27,3 +27,39 @@
 .sign-in__extra-btn {
     border: 1px solid brown;
 }
+
+@-webkit-keyframes flash {
+  from, 50%, to {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+.no-show-check-message {
+    visibility: hidden;
+}
+
+.show-check-message {
+    visibility: visible;
+    
+    animation-name: flash;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}
+
