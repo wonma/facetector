@@ -47,30 +47,27 @@ class Signup extends Component{
             <div className="sign-up">
                 {/* Sign up */}
                 <fieldset id="sign-up" className="sign-up__form">
-                    <legend className="sign-up__title">Create your id</legend>
-                    <div className="mt3">
-                        <label className="" htmlFor="name">Name</label>
-                        <input className="" onChange={this.onNameChange} type="email" name="name" id="name" />
+                    <legend className="mb3 sign-up__title">Create your id</legend>
+                    {/* Extra Button */}
+                    <div >
+                        <a href="#0" onClick={() => this.props.onRouteChange('signin')} className="sign-up__extra-btn">Aready have an id?</a>
                     </div>
-                    <div className="mt3">
-                        <label className="" htmlFor="email-address">Email</label>
-                        <input className="" onChange={this.onEmailChange} type="email" name="email-address" id="email-address" />
+                    <div className="mt4 sign-up__name">
+                        <label className="sign-up__title-name" htmlFor="name">Name</label>
+                        <input className="sign-up__field" onChange={this.onNameChange} type="email" name="name" id="name" />
                     </div>
-                    <div className="mv3">
-                        <label className="" htmlFor="password">Password</label>
-                        <input className="" onChange={this.onPasswordChange} type="password" name="password" id="password" />
+                    <div className="mt3 sign-up__email">
+                        <label className="sign-up__title-email" htmlFor="email-address">Email</label>
+                        <input className="sign-up__field" onChange={this.onEmailChange} type="email" name="email-address" id="email-address" />
+                    </div>
+                    <div className="mv3 sign-up__password">
+                        <label className="sign-up__title-password" htmlFor="password">Password</label>
+                        <input className="sign-up__field" onChange={this.onPasswordChange} type="password" name="password" id="password" />
                     </div>
                 </fieldset>
 
                 {/* Sign up Button */}
-
                 <input onClick={this.onSubmit} className="sign-up__btn" type="submit" value="Sign up" />
-
-
-                {/* Extra Button */}
-                <div className="sign-up__extra-btn">
-                    <a href="#0" onClick={() => this.props.onRouteChange('signin')} className="">Aready have an id?</a>
-                </div>
             </div>
         )
     }

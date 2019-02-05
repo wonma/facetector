@@ -1,6 +1,7 @@
 .navi {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 
 .navi__menu {
@@ -8,5 +9,26 @@
 }
 
 .navi__logout {
+    color: rgb(169, 169, 169);
+    font-size: .8rem;
+    padding: 1rem;
+    font-weight: 600;
     cursor: pointer;
+}
+
+.navi__twitter, .navi__github {
+    padding: .5rem .8rem;
+    border-radius: 4px;
+    color: rgb(72, 206, 204);
+    font-weight: 600;
+    font-size: .9rem;
+    text-decoration: none;
+}
+
+.navi__twitter {
+    border: 1px solid rgba(23, 160, 240, 0.1)
+}
+
+.navi__github {
+    border: 1px solid rgba(23, 160, 240, 0.1)
 }

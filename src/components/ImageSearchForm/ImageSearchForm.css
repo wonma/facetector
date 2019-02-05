@@ -1,5 +1,4 @@
 .imgSearch {
-    border: 1px solid green;
     margin:0 auto;
     margin-top: 1.6rem;
     width:70%;
@@ -10,14 +9,12 @@
 }
 
 .imgSearch__title {
-    border:1px solid blue;
     width: 80%;
     font-size: 2.5rem;
     font-weight: 300;
 }
 
 .imgSearch__form {
-    border:1px solid red;
     width: 80%;
     display: flex;
     margin-top: 1.6rem;

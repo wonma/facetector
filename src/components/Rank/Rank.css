@@ -1,4 +1,18 @@
 .rank {
-    border: 1px solid brown;
     margin-top: 4rem;
+}
+
+.rank__explanation {
+    color:rgb(141, 151, 151);
+    font-size: 1.4rem;
+    margin-bottom: .5rem;
+}
+
+.rank__grade {
+    color:rgb(141, 151, 151);
+    font-size: 1.4rem;
+}
+
+.rank__point {
+    color: rgb(72, 206, 204);
 }

@@ -1,20 +1,62 @@
 .hero {
     display:flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     margin-top: 3rem;
 }
 
 .hero__img-box {
-    background-color:yellow;
-    flex: 0 1 30rem;
+    flex: 0 1 35rem;
+    position: relative;
 }
 
 .hero__img {
     width: 80%;
     height: auto;
+        border-radius: 8px;
 }
 
+.bounding-box {
+    position: absolute;
+    box-shadow: inset 0 0 0 3px #1ff4e4;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    top: 25%; 
+    right: 44%; 
+    left: 40%; 
+    bottom: 40%;
+}
+
+@media only screen and (max-width: 755px) {
+    .hero__img {
+        width: 50%;
+        height: auto;
+    }
+}
+.stylie {
+  animation-name: stylie-transform-keyframes;
+  animation-duration: 8000ms;
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform-origin: 0 0;
+}
+@keyframes stylie-transform-keyframes {
+  0% {transform:translate(0px, 0px);}
+  12.50% {transform:translate(30px, -28px); }
+  25% {transform:translate(30px, -28px);}
+  37.50% {transform:translate(53px, 0px); }
+  50% {transform:translate(53px, 0px);}
+  62.50% {transform:translate(30px, 21px); }
+  75% {transform:translate(30px, 21px);}
+  87.50% {transform:translate(0px, 1px); }
+  100% {transform:translate(0px, 1px); }
+}
+
+
+
 .hero__form {
-    background-color: brown;
 } /* 여기 왜 패딩 안먹히는지 모르겠음 */

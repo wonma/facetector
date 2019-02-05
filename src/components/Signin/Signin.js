@@ -56,14 +56,19 @@ class Signin extends Component {
             <div className="sign-in">
                 {/* Sign in */}
                 <fieldset id="sign-in" className="sign-in__form">
-                    <legend className="sign-in__title">Sign in and have fun!</legend>
-                    <div className="mt3">
-                        <label className="" htmlFor="email-address">Email</label>
-                        <input className="" onChange={this.onEmailChange} type="email" name="email-address" id="email-address" />
+                    {/* Extra Button */}
+                    <div>
+                        <a className="sign-in__extra-btn" href="#0" onClick={() => this.props.onRouteChange('signup')}>No id? Click me!</a>
                     </div>
-                    <div className="mv3">
-                        <label className="" htmlFor="password">Password</label>
-                        <input className="" onChange={this.onPasswordChange} type="password" name="password" id="password" />
+                    <legend className="mb3 sign-in__title">Detect Faces and Score!</legend>
+
+                    <div className="mt4 sign-in__email">
+                        <label className="sign-in__title-email" htmlFor="email-address">Email</label>
+                        <input className="sign-in__field" onChange={this.onEmailChange} type="email" name="email-address" id="email-address" />
+                    </div>
+                    <div className="mv3 sign-in__password">
+                        <label className="sign-in__title-password" htmlFor="password">Password</label>
+                        <input className="sign-in__field" onChange={this.onPasswordChange} type="password" name="password" id="password" />
                     </div>
                 </fieldset>
 
@@ -75,12 +80,6 @@ class Signin extends Component {
                     }
                 </div>
                 <input onClick={this.onSubmit} className="sign-in__btn" type="button" value="Sign in" />
-
-
-                {/* Extra Button */}
-                <div className="sign-in__extra-btn">
-                    <a href="#0" onClick={() => this.props.onRouteChange('signup')} className="">No id? Create one for quick!</a>
-                </div>
             </div>
         )
     }

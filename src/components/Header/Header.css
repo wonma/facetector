@@ -8,3 +8,9 @@
     height: 80px;    
     box-shadow: rgba(0, 0, 0, 0.05) 1px 10.5px 46px;
 }
+
+@media only screen and (max-width: 540px) {
+    .header {
+        padding: 0 1.8rem;       
+    }
+}

@@ -9,7 +9,7 @@ const ImageSearchForm = ({onInputChange, onClickEvent}) => {
     return (
         <div className='imgSearch'>
             <h2 className='imgSearch__title'>
-                {'Find the faces in your photo!'}
+                {'Find the faces and get a score!'}
             </h2>
             <div className='imgSearch__form'>
                 <input className='imgSearch__input' placeholder='Image Url Here' onChange={onInputChange} />

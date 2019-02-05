@@ -4,8 +4,8 @@ import './Rank.css'
 const Rank = ({ name, rank }) => {
     return (
         <div className='rank'>
-            <span className='rank__explanation'>{'Hello,'} {name}{'!'}</span>
-            <span> {'Your rank is'} {rank} {':)'} </span>
+            <p className='rank__explanation'>{'Hello,'}  <span className='rank__point'>{name}</span>{'!'}</p>
+            <p className='rank__grade'> {'Your score is'} <span className='rank__point'>{rank}</span> {':)'} </p>
         </div>
     )
 }
