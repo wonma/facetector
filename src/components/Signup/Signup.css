@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-        width: 273px;
+    width: 273px;
 }
 
 .sign-up__form {
@@ -13,47 +13,52 @@
     border: none;
     display: flex;
     flex-direction: column;
+    width: 20rem;
+    margin:0;
 }
 
+.sign-up__title {
+    color: rgb(1, 193, 193);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-top: 1rem;
+}
 
+.sign-up__title-name, 
+.sign-up__title-email, 
+.sign-up__title-password {
+    margin-right: .5rem;
+}
 
-.sign-up__name, .sign-up__email, .sign-up__password {
+.sign-up__name, 
+.sign-up__email, 
+.sign-up__password {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     color: rgb(154, 157, 157);
 }
 
 .sign-up__field {
-    flex: 1 1 50%;
+    flex: 0 1 70%;
+    padding: .4rem .4rem;
+    font-size: .9rem;  
+    color: #333; 
+    border:1px solid #cdcdcd;
 }
 
-.sign-up__title {
-    color: rgb(1, 193, 193);
-    font-weight: 700;
-    font-size: 1.8rem;
-    margin-top: 1rem;
-}
+.sign-up__field-email:invalid{
+    border:1px solid rgb(250, 89, 111);
 
-.sign-up__title-name, .sign-up__title-email, .sign-up__title-password {
-    margin-right: .5rem;
-}
-
-
-
-.sign-up__title {
-    color: rgb(1, 193, 193);
-    font-weight: 700;
-    font-size: 1.8rem;
-    margin-top: 1rem;
 }
 
 .sign-up__btn {
-    padding:1rem 3rem;
-    background-color:aquamarine;
+    padding:1.2rem 4rem;
+    background-color:rgb(55, 212, 204);
     cursor: pointer;
     border: none;
     border-radius: 4px;
-    color: rgb(52, 150, 150);
+    color: #fff;
     font-weight: 600;
     margin-bottom: 1rem;
 }
@@ -65,4 +70,44 @@
     font-size: .9rem;
     text-decoration: none;
     border-bottom: 1px solid rgb(55, 184, 212);
+}
+
+
+@-webkit-keyframes flash {
+  from, 50%, to {
+    opacity: 1;
+  }
+
+  25%, 75% {
+    opacity: 0;
+  }
+}
+
+@keyframes flash {
+  from,
+  50%,
+  to {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+.no-show-check-message {
+    visibility: hidden;
+    padding: .5rem .2rem;
+    color: rgb(250, 89, 111);
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+.show-check-message {
+    visibility: visible;
+    
+    animation-name: flash;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
 }

@@ -1,9 +1,9 @@
 .hero {
     display:flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     flex-wrap: wrap;
-    margin-top: 3rem;
+    margin-top: 4rem;
 }
 
 .hero__img-box {
@@ -14,7 +14,7 @@
 .hero__img {
     width: 80%;
     height: auto;
-        border-radius: 8px;
+    border-radius: 4px;
 }
 
 .bounding-box {

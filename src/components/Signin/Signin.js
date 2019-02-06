@@ -40,10 +40,10 @@ class Signin extends Component {
             if (user.id) {                          // 성공한 후 반응 두 가지
                 this.props.onRouteChange('home')    // (1) home 화면 render
                 this.props.loadUser(user)           // (2) user정보 넘겨서 state 업뎃하기
-            } else if (user === 'No blank fields' ) {
+            } else if (user === 'blank' ) {
                 this.onWrongUser()
                 this.setState({failFrom: 'blank'})
-            } else if (user === 'Unable to sign in') {
+            } else if (user === 'wronginfo') {
                 this.onWrongUser()
                 this.setState({ failFrom: 'wrongInfo' })
             }
@@ -60,22 +60,25 @@ class Signin extends Component {
                     <div>
                         <a className="sign-in__extra-btn" href="#0" onClick={() => this.props.onRouteChange('signup')}>No id? Click me!</a>
                     </div>
-                    <legend className="mb3 sign-in__title">Detect Faces and Score!</legend>
+
+                    <legend className="mb3 sign-in__title">Login and Score!</legend>
 
                     <div className="mt4 sign-in__email">
                         <label className="sign-in__title-email" htmlFor="email-address">Email</label>
-                        <input className="sign-in__field" onChange={this.onEmailChange} type="email" name="email-address" id="email-address" />
+                        <input className="sign-in__field sign-in__field-email" autoComplete='true' onChange={this.onEmailChange} type="email" name="email-address" id="email-address" />
                     </div>
-                    <div className="mv3 sign-in__password">
+
+                    <div className="mt3 sign-in__password">
                         <label className="sign-in__title-password" htmlFor="password">Password</label>
                         <input className="sign-in__field" onChange={this.onPasswordChange} type="password" name="password" id="password" />
                     </div>
+
                 </fieldset>
 
                 {/* Sign in Button */}
                 <div id="check-message" className="no-show-check-message">
                     {   this.state.failFrom === 'blank'
-                        ? <p >Check out email or password</p>
+                        ? <p >Check email or password</p>
                         : <p >Wrong Email or password</p>
                     }
                 </div>
