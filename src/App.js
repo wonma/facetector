@@ -8,7 +8,7 @@ import ImageSearchForm from './components/ImageSearchForm/ImageSearchForm'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition'
 import Rank from './components/Rank/Rank'
 import Particles from 'react-particles-js'
-import Clarifai from 'clarifai'
+// import Clarifai from 'clarifai'
 import 'tachyons'
 
 const particleOptions = {
@@ -32,9 +32,9 @@ const particleOptions = {
   }
 }
 
-const app = new Clarifai.App({
-  apiKey: '61feadaf01f14a0b9f76fc02eaf5bf7d'
-});
+// const app = new Clarifai.App({
+//   apiKey: '61feadaf01f14a0b9f76fc02eaf5bf7d'
+// });
 
 const initialState = {
   input: '',
@@ -134,7 +134,14 @@ class App extends Component {
       err: 'noErr'      // no-result박스가 아닌 result박스가 보이게 (result박스는 이미지, 로딩바, 바운딩박스 포함)
     })
 
-    app.models.predict('a403429f2ddf4b49b307e318f00e528b', this.state.input)
+    // app.models.predict('a403429f2ddf4b49b307e318f00e528b', this.state.input)
+    fetch('http://localhost:3000/imageurl', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        input: this.state.input // id정보 보내서 해당 id인 유저의 database내 entries 값만 영향미치게
+      })
+    }).then(result => result.json())
       .then(response => {
         if (response) {
           this.updateBoxsize(this.calculatePosition(response))
@@ -144,7 +151,7 @@ class App extends Component {
             err: 'noErr' // 대신 이미지 검색 결과 박스란은 보이게
           })
 
-          fetch('http://localhost:3000/image', {
+          fetch('http://localhost:3000/image', { // 특정 유저의 db의 entries값 increment하는 기능
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -199,7 +206,7 @@ class App extends Component {
                 onImgLoadErr={this.onImgLoadErr}
                 onImgLoad={this.onImgLoad} />
             </div>
-        }        
+        }     
       </div>
     );
   }

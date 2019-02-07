@@ -1,5 +1,4 @@
 .App {
-
   text-align: center;
 }
 
@@ -11,4 +10,15 @@
   left: 0;
   bottom: 0;
   z-index:-1;
+}
+
+
+.stress {
+  color: rgb(55, 184, 212);  
+}
+
+@media only screen and (max-width: 755px) {
+  .footer {
+    margin-top:4rem 0 2rem 0;
+  }
 }

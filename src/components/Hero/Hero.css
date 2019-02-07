@@ -34,6 +34,9 @@
         width: 50%;
         height: auto;
     }
+    .hero__img-box {
+        margin-bottom: 1rem;
+    }
 }
 .stylie {
   animation-name: stylie-transform-keyframes;
