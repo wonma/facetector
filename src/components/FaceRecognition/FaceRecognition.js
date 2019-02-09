@@ -3,7 +3,7 @@ import BoundingBoxes from '../BoundingBoxes/BoundingBoxes'
 import './FaceRecognition.css'
 
 
-const FaceRecognition = ({ imageUrl, boxPosition, isLoading, isError, noImgAtStart, onImgLoad, onImgLoadErr }) => {
+const FaceRecognition = ({ imageUrl, boxPosition, foundFaces, isLoading, isError, noImgAtStart, onImgLoad, onImgLoadErr }) => {
     return (
             <div className='center' style={{ display: noImgAtStart }} >
                 { isError === 'noErr' // 이미지 좌표 fetching실패 시 onError값이 err가 되며 대체문구가 렌더된다
@@ -37,6 +37,8 @@ const FaceRecognition = ({ imageUrl, boxPosition, isLoading, isError, noImgAtSta
                                     </path>
                             </svg>
                         </div>
+
+                    <p id='foundFaces' className='found-faces'> +{foundFaces} </p>
 
                         <BoundingBoxes boxPosition={boxPosition} />
                       </div>

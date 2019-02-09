@@ -40,6 +40,7 @@ const initialState = {
   input: '',
   imgUrl: '',
   box: [],  // coordinates
+  foundFaces: '', // number of found faces
   loading: 'none', // loading svg
   noImgAtStart: 'none',
   imgLoaded: false,
@@ -67,13 +68,13 @@ class App extends Component {
 
   calculatePosition = (resp) => {
     const arrayOfBoxes = []
-    const img = document.querySelector('#targetImg')
+    const img = document.querySelector('#targetImg') // width, height 속성에 접근 가능
     const width = Number(img.width)
     const height = Number(img.height)
 
-    resp.outputs[0].data.regions.forEach(eachRegion => {
+    resp.forEach(eachRegion => {
       const { top_row, left_col, bottom_row, right_col } = eachRegion.region_info.bounding_box
-      const caculatedResult = {
+      const caculatedResult = { // 0 ~ 1 사이의 수로 받은 좌표 비율 값을 이미지 px값 기준으로 환산
         top: height * top_row,
         right: width - width * right_col,
         bottom: height - height * bottom_row,
@@ -82,7 +83,7 @@ class App extends Component {
       arrayOfBoxes.push(caculatedResult)
     })
     
-    return arrayOfBoxes
+    return arrayOfBoxes // 환산된 좌표 정보를 입수한 array를 리턴
   }
 
   updateBoxsize = (box) => {
@@ -110,8 +111,8 @@ class App extends Component {
     document.querySelector('#img-box').classList.add('hide-text')
   }
 
-  // img load 성공 시 --> default 에러 문구 안보이게 하는 것을 해제한다.
   onImgLoad = () => {
+    // img load 성공 시 --> default 에러 문구 안보이게 하는 것을 해제한다.
     document.querySelector('#img-box').classList.remove('hide-text')
   }
 
@@ -125,6 +126,8 @@ class App extends Component {
   }
 
   onClickEvent = () => {
+    // img load 성공 시 good job 메세지를 뜨게 한다.
+    document.querySelector('#foundFaces').classList.remove('on-img-loaded')
     
     this.setState({
       imgUrl: this.state.input, // input 박스에 입력된 것 최종적으로 imgUrl state에 업뎃되게.
@@ -143,9 +146,12 @@ class App extends Component {
       })
     }).then(result => result.json())
       .then(response => {
-        if (response) {
-          this.updateBoxsize(this.calculatePosition(response))
 
+
+        if (response) {  // respons는 얼굴 갯수만큼의 정보들을 모은 단일 array임
+          
+          this.updateBoxsize(this.calculatePosition(response))
+          const numOfFaces = response.length
           this.setState({ 
             loading: 'none', // loading 아이콘 안보이게
             err: 'noErr' // 대신 이미지 검색 결과 박스란은 보이게
@@ -159,7 +165,8 @@ class App extends Component {
             })
           }).then(response => response.json())
             .then(data => {
-              this.setState(Object.assign(this.state.user, {entries: data}))
+              document.querySelector('#foundFaces').classList.add('on-img-loaded')
+              this.setState(Object.assign(this.state.user, { entries: data, foundFaces: numOfFaces }))
             })
             .catch(console.log)
 
@@ -200,6 +207,7 @@ class App extends Component {
               <FaceRecognition
                 imageUrl={this.state.imgUrl}
                 boxPosition={this.state.box}
+                foundFaces={this.state.foundFaces}
                 isLoading={this.state.loading}
                 isError={this.state.err}
                 noImgAtStart={this.state.noImgAtStart}
