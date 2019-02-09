@@ -1,7 +1,37 @@
+.resultBox {
+    /* position:relative; */
+}
+
 .center {
     display: flex;
     justify-content: center;
     position: relative;
+}
+
+.goRegister {
+    position: absolute;
+    top:2rem;
+    right:3rem;
+    display:inline;
+    padding: .5rem 1rem;
+    color: rgb(255, 137, 218);  
+    font-weight: 600;
+    font-size: .8rem;
+    text-decoration: none;
+    border-radius: 50px;
+    background-color: rgba(255, 137, 218, 0.15);
+    transition: .3s ease all;
+    cursor: pointer;
+}
+
+.goRegister:hover {
+    background-color: rgba(255, 137, 218, 0.3);
+}
+
+@media only screen and (max-width: 755px) {
+    .goRegister {
+        right:1rem;
+    }
 }
 
 .hide-text {
@@ -13,34 +43,6 @@
 }
 
 
-@-webkit-keyframes fadeout {
-
-}
-
-@keyframes fadeout {
-    0% {
-        transform: scale(1) translate(-50%, -50%);
-    }
-
-    20% {
-        transform: scale(1.2) translate(-50%, -50%);
-    }
-
-    40% {
-        transform: scale(1) translate(-50%, -50%);   
-    }
-
-    60% {
-        top: 50%; 
-        transform: scale(1) translate(-50%, -50%);   
-        opacity: 1;  
-    }
-
-    100% {
-        top: 40%; 
-        opacity: 0;
-    }
-}
 
 .found-faces {
     visibility: hidden;
@@ -89,11 +91,6 @@
     color: rgb(19, 192, 255);
 }
 
-svg {
-    width: 60px;
-    height: 60px;
-}
-
 .search-result__img {
     display: block;
 }
@@ -119,4 +116,61 @@ svg {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+
+
+@-webkit-keyframes fadeout {
+    0% {
+        transform: scale(1) translate(-50%, -50%);
+    }
+
+    20% {
+        transform: scale(1.2) translate(-50%, -50%);
+    }
+
+    40% {
+        transform: scale(1) translate(-50%, -50%);   
+    }
+
+    60% {
+        top: 50%; 
+        transform: scale(1) translate(-50%, -50%);   
+        opacity: 1;  
+    }
+
+    100% {
+        top: 40%; 
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    0% {
+        transform: scale(1) translate(-50%, -50%);
+    }
+
+    20% {
+        transform: scale(1.2) translate(-50%, -50%);
+    }
+
+    40% {
+        transform: scale(1) translate(-50%, -50%);   
+    }
+
+    60% {
+        top: 50%; 
+        transform: scale(1) translate(-50%, -50%);   
+        opacity: 1;  
+    }
+
+    100% {
+        top: 40%; 
+        opacity: 0;
+    }
+}
+
+svg {
+    width: 60px;
+    height: 60px;
 }

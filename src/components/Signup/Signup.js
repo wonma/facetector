@@ -29,7 +29,7 @@ class Signup extends Component{
         document.querySelector('#check-message').classList.remove('show-check-message')
         document.querySelector('#check-message').classList.add('show-check-message')
     }
-
+    
     onSubmit = () => {
         fetch('http://localhost:3000/register', {
             method: 'post',
@@ -58,6 +58,13 @@ class Signup extends Component{
             .catch(err => {console.log('unable to register')})
     }
 
+    handleEnter = (e) => {
+        if (e.keyCode === 13) {
+            // Trigger the sign-in button with a click
+            document.querySelector("#signUpBtn").click();
+        }
+    }
+
     render() {
 
         const failWhy = this.state.failFrom
@@ -84,17 +91,17 @@ class Signup extends Component{
 
                     <div className="mt4 sign-up__name">
                         <label className="sign-up__title-name" htmlFor="name">Username</label>
-                        <input className="sign-up__field"  onChange={this.onNameChange} type="email" name="name" id="name" />
+                        <input className="sign-up__field" placeHolder='Your lovely name!' onChange={this.onNameChange} type="email" name="name" id="name" />
                     </div>
 
                     <div className="mt3 sign-up__email">
                         <label className="sign-up__title-email" htmlFor="email-address">Email</label>
-                        <input className="sign-up__field sign-up__field-email" onChange={this.onEmailChange} type="email" name="email-address" id="email-address" />
+                        <input className="sign-up__field sign-up__field-email" placeHolder='Any email to register :)' onChange={this.onEmailChange} type="email" name="email-address" id="email-address" />
                     </div>
 
                     <div className="mt3 sign-up__password">
                         <label className="sign-up__title-password" htmlFor="password">Password</label>
-                        <input className="sign-up__field" placeHolder='At least 4 characters' onChange={this.onPasswordChange} type="password" name="password" id="password" />
+                        <input className="sign-up__field" onKeyUp={this.handleEnter} placeHolder='At least 4 characters' onChange={this.onPasswordChange} type="password" name="password" id="password" />
                     </div>
 
                 </fieldset>
@@ -103,7 +110,10 @@ class Signup extends Component{
                 <div id="check-message" className="no-show-check-message">
                     {errorMessage}
                 </div>
-                <input onClick={this.onSubmit} className="sign-up__btn" type="button" value="Sign up" />
+                <div className='cta-box'>
+                    <button id='signUpBtn' onClick={this.onSubmit} className="sign-up__btn" type="button" >SIGN UP</button>
+                    <button id='guestBtn' onClick={this.props.onGuestLogin} className="guest_btn" type="button" >GUEST LOGIN</button>
+                </div>
             </div>
         )
     }

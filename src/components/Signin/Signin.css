@@ -52,8 +52,10 @@
 
 }
 
-.sign-in__btn {
-    padding:1.2rem 4rem;
+.sign-in__btn, .guest_btn {
+    font-size: .8rem;
+    width: 10rem;
+    padding:1.2rem .5rem;
     background-color:rgb(55, 212, 204);
     cursor: pointer;
     border: none;
@@ -61,6 +63,10 @@
     color: #fff;
     font-weight: 600;
     margin-bottom: 1rem;
+}
+
+.guest_btn {
+    background-color:rgb(32, 132, 254);
 }
 
 .sign-in__extra-btn {

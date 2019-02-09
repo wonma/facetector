@@ -2,10 +2,10 @@ import React from 'react'
 import BoundingBoxes from '../BoundingBoxes/BoundingBoxes'
 import './FaceRecognition.css'
 
-
-const FaceRecognition = ({ imageUrl, boxPosition, foundFaces, isLoading, isError, noImgAtStart, onImgLoad, onImgLoadErr }) => {
+const FaceRecognition = ({ onRouteChange, name, imageUrl, boxPosition, foundFaces, isLoading, isError, noImgAtStart, onImgLoad, onImgLoadErr }) => {
     return (
-            <div className='center' style={{ display: noImgAtStart }} >
+            <div className='resultBox'>
+                <div className='center' style={{ display: noImgAtStart }} >
                 { isError === 'noErr' // 이미지 좌표 fetching실패 시 onError값이 err가 되며 대체문구가 렌더된다
                     // (a) Failed Result
                     ? <div className='search-result' > 
@@ -50,6 +50,12 @@ const FaceRecognition = ({ imageUrl, boxPosition, foundFaces, isLoading, isError
                     
                 }
             </div>
+                {name === 'guest'
+                    ? <a className='goRegister' onClick={() => onRouteChange('signup')}>{'Register & Save Score!'}</a>
+                    : <p style={{ display: 'none' }}> </p>
+                }
+            </div>
+
             
     )
 }

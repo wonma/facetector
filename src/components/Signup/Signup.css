@@ -44,7 +44,13 @@
     padding: .4rem .4rem;
     font-size: .9rem;  
     color: #333; 
-    border:1px solid #cdcdcd;
+    border:1px solid #ededed;
+}
+
+.sign-up__field::placeholder {
+    font-size: .8rem;
+    padding-left: 4px;
+    color:#999;
 }
 
 .sign-up__field-email:invalid{
@@ -52,8 +58,10 @@
 
 }
 
-.sign-up__btn {
-    padding:1.2rem 4rem;
+.sign-up__btn, .guest_btn {
+    font-size: .8rem;
+    width: 10rem;
+    padding:1.2rem .5rem;
     background-color:rgb(55, 212, 204);
     cursor: pointer;
     border: none;
@@ -61,6 +69,16 @@
     color: #fff;
     font-weight: 600;
     margin-bottom: 1rem;
+}
+
+.guest_btn {
+    background-color:rgb(66, 151, 255);
+}
+
+.cta-box {
+    display: flex;
+    justify-content: space-between;
+    width: 328px;
 }
 
 .sign-up__extra-btn {

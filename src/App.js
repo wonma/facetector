@@ -127,8 +127,7 @@ class App extends Component {
 
   onClickEvent = () => {
     // img load 성공 시 good job 메세지를 뜨게 한다.
-    document.querySelector('#foundFaces').classList.remove('on-img-loaded')
-    
+
     this.setState({
       imgUrl: this.state.input, // input 박스에 입력된 것 최종적으로 imgUrl state에 업뎃되게.
       noImgAtStart: 'block',    // 박스 전체 div 보이게 (이거의 영향력을 아직 잘 모르겠음)
@@ -149,7 +148,8 @@ class App extends Component {
 
 
         if (response) {  // respons는 얼굴 갯수만큼의 정보들을 모은 단일 array임
-          
+          document.querySelector('#foundFaces').classList.remove('on-img-loaded')
+
           this.updateBoxsize(this.calculatePosition(response))
           const numOfFaces = response.length
           this.setState({ 
@@ -165,6 +165,7 @@ class App extends Component {
             })
           }).then(response => response.json())
             .then(data => {
+
               document.querySelector('#foundFaces').classList.add('on-img-loaded')
               this.setState(Object.assign(this.state.user, { entries: data, foundFaces: numOfFaces }))
             })
@@ -178,6 +179,36 @@ class App extends Component {
       })
   }
 
+  // Guest Login
+  onGuestLogin = () => {
+    fetch('http://localhost:3000/register', {
+      method: 'delete',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: 'guest',
+        email: 'guest@gmail.com'
+      })
+    }).then(response => {
+      if (response) {
+        fetch('http://localhost:3000/register', {
+          method: 'post',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: 'guest',
+            email: 'guest@gmail.com',
+            password: '1234'
+          })
+        }).then(response => response.json())
+          .then(user => {
+            if (user.id) {
+              this.onRouteChange('home')
+              this.loadUser(user)
+            }
+          })
+          .catch(err => { console.log('error error') })
+      }
+    })
+  }
 
   render() {
     return (
@@ -189,32 +220,37 @@ class App extends Component {
           routeState={this.state.route} // home route state가 default인데, 아니게되면 log out 안보이도록.
           onRouteChange={this.onRouteChange} // log out버튼에 셋팅되어 있음. 누르면 signIn route로 setState되도록.
           onLogOut={this.onLogOut}
-        /> 
-        {
-          this.state.route === 'signin' || this.state.route === 'signup' 
-            ? <Hero           // 아래 세 개를 signIn, singUp 컴포넌트에 전달하고 있음
+        />
+        <div className='header-wrapper'>
+          {
+            this.state.route === 'signin' || this.state.route === 'signup'
+              ? <Hero           // 아래 세 개를 signIn, singUp 컴포넌트에 전달하고 있음
 
                 loadUser={this.loadUser} // signIn request 성공하면 트리거되어서 user state에 정보 받아오도록
                 routeState={this.state.route}  // (signIn route가 default) 
                 onRouteChange={this.onRouteChange} // 가입하러가기 누르면 signUp 화면 렌더 + signIn 누르면 home 화면 렌더
-
+                onGuestLogin={this.onGuestLogin}
               />
-          : <div>
-              <Rank name={this.state.user.name} rank={this.state.user.entries} />
-              <ImageSearchForm
-                onInputChange={this.onInputChange}
-                onClickEvent={this.onClickEvent} />
-              <FaceRecognition
-                imageUrl={this.state.imgUrl}
-                boxPosition={this.state.box}
-                foundFaces={this.state.foundFaces}
-                isLoading={this.state.loading}
-                isError={this.state.err}
-                noImgAtStart={this.state.noImgAtStart}
-                onImgLoadErr={this.onImgLoadErr}
-                onImgLoad={this.onImgLoad} />
-            </div>
-        }     
+              : <div>
+                <Rank name={this.state.user.name} rank={this.state.user.entries} />
+                <ImageSearchForm
+                  onInputChange={this.onInputChange}
+                  onClickEvent={this.onClickEvent} />
+                <FaceRecognition
+                  imageUrl={this.state.imgUrl}
+                  boxPosition={this.state.box}
+                  foundFaces={this.state.foundFaces}
+                  isLoading={this.state.loading}
+                  isError={this.state.err}
+                  noImgAtStart={this.state.noImgAtStart}
+                  onImgLoadErr={this.onImgLoadErr}
+                  onImgLoad={this.onImgLoad}
+                  name={this.state.user.name}
+                  onRouteChange={this.onRouteChange}
+                />
+              </div>
+          }     
+        </div>
       </div>
     );
   }

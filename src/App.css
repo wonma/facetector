@@ -2,7 +2,6 @@
   text-align: center;
 }
 
-
 .particles {
   position: fixed;
   top: 0;
@@ -21,4 +20,11 @@
   .footer {
     margin-top:4rem 0 2rem 0;
   }
+}
+
+.header-wrapper {
+    max-width: 1200px;   
+    margin:0 auto;
+    position: relative;
+    padding: 0 2rem;
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Signin.css'
-import { userInfo } from 'os';
 
 class Signin extends Component {
 
@@ -27,6 +26,13 @@ class Signin extends Component {
         document.querySelector('#check-message').classList.add('show-check-message')
     }
 
+    handleEnter = (e) => {
+        if (e.keyCode === 13) {
+            // Trigger the sign-in button with a click
+            document.querySelector("#signInBtn").click();
+        }
+    }
+
     onSubmit = () => {
         fetch('http://localhost:3000/signin', {
             method: 'post',
@@ -51,6 +57,17 @@ class Signin extends Component {
         .catch(err => console.log('Failed to fetch')) 
     }
 
+
+// signInInput.addEventListener('keyup', function (event) {
+//     // Cancel the default action, if needed
+//     event.preventDefault();
+//     // Number 13 is the "Enter" key on the keyboard
+//     if (event.keyCode === 13) {
+//         // Trigger the button element with a click
+//         document.getElementById("signInBtn").click();
+//     }
+// });
+
     render() {
         return (
             <div className="sign-in">
@@ -70,7 +87,7 @@ class Signin extends Component {
 
                     <div className="mt3 sign-in__password">
                         <label className="sign-in__title-password" htmlFor="password">Password</label>
-                        <input className="sign-in__field" onChange={this.onPasswordChange} type="password" name="password" id="password" />
+                        <input className="sign-in__field" onKeyUp={this.handleEnter} onChange={this.onPasswordChange} type="password" name="password" id="signInPassword" />
                     </div>
 
                 </fieldset>
@@ -82,10 +99,14 @@ class Signin extends Component {
                         : <p >Wrong Email or password</p>
                     }
                 </div>
-                <input onClick={this.onSubmit} className="sign-in__btn" type="button" value="Sign in" />
+                <div className='cta-box'>
+                    <button id='signInBtn' onClick={(e) => { this.onSubmit(e) }} className="sign-in__btn" type="button" >SIGN IN</button>
+                    <button id='guestBtn' onClick={this.props.onGuestLogin} className="guest_btn" type="button" >GUEST LOGIN</button>
+                </div>
             </div>
         )
     }
 } 
+
 
 export default Signin

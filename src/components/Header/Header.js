@@ -5,9 +5,13 @@ import Logo from '../Logo/Logo'
 
 const Header = ({ onRouteChange, routeState, onLogOut }) => {
     return (
-        <div className='header'>
-            <Logo />
-            <Navigation routeState={routeState} onRouteChange={onRouteChange} onLogOut={onLogOut} /> 
+        <div className='header-box'>
+            <div className='wrapper'>
+                <div className='header'>
+                    <Logo />
+                    <Navigation routeState={routeState} onRouteChange={onRouteChange} onLogOut={onLogOut} /> 
+                </div>
+            </div>
         </div>
     )
 }
