@@ -44,7 +44,7 @@
     padding: .4rem .4rem;
     font-size: .9rem;  
     color: #333; 
-    border:1px solid #cdcdcd;
+    border:1px solid #e4e4e4;
 }
 
 .sign-in__field-email:invalid{
@@ -63,10 +63,16 @@
     color: #fff;
     font-weight: 600;
     margin-bottom: 1rem;
+    transition: .3s ease-out all;
 }
 
 .guest_btn {
     background-color:rgb(32, 132, 254);
+    transition: .3s ease-out all;
+}
+
+.sign-in__btn:hover {
+    background-color:rgb(1, 238, 215);
 }
 
 .sign-in__extra-btn {
@@ -76,6 +82,7 @@
     font-size: .9rem;
     text-decoration: none;
     border-bottom: 1px solid rgb(55, 184, 212);
+    transition: .3s ease-out all;
 }
 
 @-webkit-keyframes flash {

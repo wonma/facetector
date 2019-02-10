@@ -5,8 +5,8 @@ import './Navigation.css'
 const Navigation = ({ onRouteChange, routeState, onLogOut }) => {
     return (
         <nav className='navi'>    
-            <a href="https://twitter.com/Doyouwonmi" className="navi__menu navi__twitter" target='_blank'>twitter</a>
-            <a href="https://github.com/wonma/My-Learning-Tracker" className="navi__menu navi__github" target='_blank'>github</a>
+            <a href="https://twitter.com/Doyouwonmi" className="navi__menu navi__twitter" target='_blank' rel='noopener noreferrer'>twitter</a>
+            <a href="https://github.com/wonma/My-Learning-Tracker" className="navi__menu navi__github" target='_blank' rel='noopener noreferrer'>github</a>
             {
                 routeState === 'home'
                     ? <p onClick={onLogOut}

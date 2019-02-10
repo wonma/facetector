@@ -10,7 +10,7 @@ const Hero = ({onGuestLogin, loadUser, onRouteChange, routeState}) => {
         <div className='hero'>
             <div className='hero__img-box'>
                 <div className='bounding-box stylie'> </div>
-                <img className='hero__img' src={heroImg} alt='main image' />
+                <img className='hero__img' src={heroImg} alt='main' />
             </div>
         {
             routeState === 'signin'

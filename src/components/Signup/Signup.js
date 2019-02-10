@@ -31,7 +31,7 @@ class Signup extends Component{
     }
     
     onSubmit = () => {
-        fetch('http://localhost:3000/register', {
+        fetch('https://tranquil-scrubland-98492.herokuapp.com/register', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -91,17 +91,17 @@ class Signup extends Component{
 
                     <div className="mt4 sign-up__name">
                         <label className="sign-up__title-name" htmlFor="name">Username</label>
-                        <input className="sign-up__field" placeHolder='Your lovely name!' onChange={this.onNameChange} type="email" name="name" id="name" />
+                        <input className="sign-up__field" placeholder='Your lovely name!' onChange={this.onNameChange} type="email" name="name" id="name" />
                     </div>
 
                     <div className="mt3 sign-up__email">
                         <label className="sign-up__title-email" htmlFor="email-address">Email</label>
-                        <input className="sign-up__field sign-up__field-email" placeHolder='Any email to register :)' onChange={this.onEmailChange} type="email" name="email-address" id="email-address" />
+                        <input className="sign-up__field sign-up__field-email" placeholder='Any email to register :)' onChange={this.onEmailChange} type="email" name="email-address" id="email-address" />
                     </div>
 
                     <div className="mt3 sign-up__password">
                         <label className="sign-up__title-password" htmlFor="password">Password</label>
-                        <input className="sign-up__field" onKeyUp={this.handleEnter} placeHolder='At least 4 characters' onChange={this.onPasswordChange} type="password" name="password" id="password" />
+                        <input className="sign-up__field" onKeyUp={this.handleEnter} placeholder='At least 4 characters' onChange={this.onPasswordChange} type="password" name="password" id="password" />
                     </div>
 
                 </fieldset>

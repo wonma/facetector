@@ -51,7 +51,7 @@ const FaceRecognition = ({ onRouteChange, name, imageUrl, boxPosition, foundFace
                 }
             </div>
                 {name === 'guest'
-                    ? <a className='goRegister' onClick={() => onRouteChange('signup')}>{'Register & Save Score!'}</a>
+                    ? <a href='#0' className='goRegister' onClick={() => onRouteChange('signup')}>{'Register & Save Score!'}</a>
                     : <p style={{ display: 'none' }}> </p>
                 }
             </div>

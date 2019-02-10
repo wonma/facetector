@@ -137,7 +137,7 @@ class App extends Component {
     })
 
     // app.models.predict('a403429f2ddf4b49b307e318f00e528b', this.state.input)
-    fetch('http://localhost:3000/imageurl', {
+    fetch('https://tranquil-scrubland-98492.herokuapp.com/imageurl', {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -157,7 +157,7 @@ class App extends Component {
             err: 'noErr' // 대신 이미지 검색 결과 박스란은 보이게
           })
 
-          fetch('http://localhost:3000/image', { // 특정 유저의 db의 entries값 increment하는 기능
+          fetch('https://tranquil-scrubland-98492.herokuapp.com/image', { // 특정 유저의 db의 entries값 increment하는 기능
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -181,7 +181,7 @@ class App extends Component {
 
   // Guest Login
   onGuestLogin = () => {
-    fetch('http://localhost:3000/register', {
+    fetch('https://tranquil-scrubland-98492.herokuapp.com/register', {
       method: 'delete',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -190,7 +190,7 @@ class App extends Component {
       })
     }).then(response => {
       if (response) {
-        fetch('http://localhost:3000/register', {
+        fetch('https://tranquil-scrubland-98492.herokuapp.com/register', {
           method: 'post',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
