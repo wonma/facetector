@@ -181,6 +181,8 @@ class App extends Component {
 
   // Guest Login
   onGuestLogin = () => {
+    document.querySelector('#guestBtn').textContent = 'LOGGING IN...'
+
     fetch('https://tranquil-scrubland-98492.herokuapp.com/register', {
       method: 'delete',
       headers: { 'Content-Type': 'application/json' },
@@ -205,7 +207,10 @@ class App extends Component {
               this.loadUser(user)
             }
           })
-          .catch(err => { console.log('error error') })
+          .catch(err => { 
+            console.log('error error') 
+            document.querySelector('#guestBtn').textContent = 'GUEST LOGIN'
+          })
       }
     })
   }

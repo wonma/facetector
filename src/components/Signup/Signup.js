@@ -26,11 +26,14 @@ class Signup extends Component{
 
 
     onWrongType = () => {
+        document.querySelector('#signUpBtn').textContent = 'SIGN UP'
         document.querySelector('#check-message').classList.remove('show-check-message')
         document.querySelector('#check-message').classList.add('show-check-message')
     }
     
     onSubmit = () => {
+        document.querySelector('#signUpBtn').textContent = 'GETTING IN...'
+
         fetch('https://tranquil-scrubland-98492.herokuapp.com/register', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },

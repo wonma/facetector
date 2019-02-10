@@ -22,6 +22,7 @@ class Signin extends Component {
 
 
     onWrongUser = () => {
+        document.querySelector('#signIpBtn').textContent = 'SIGN IN'
         document.querySelector('#check-message').classList.remove('show-check-message')
         document.querySelector('#check-message').classList.add('show-check-message')
     }
@@ -34,6 +35,8 @@ class Signin extends Component {
     }
 
     onSubmit = () => {
+        document.querySelector('#signInBtn').textContent = 'GETTING IN...'
+
         fetch('https://tranquil-scrubland-98492.herokuapp.com/signin', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
