@@ -10,7 +10,6 @@ import Rank from './components/Rank/Rank'
 import Particles from 'react-particles-js'
 import MetaTags from 'react-meta-tags';
 import AutoUrl from './components/AutoUrl/AutoUrl'
-import metaImage from './images/favicon.png'
 
 // import Clarifai from 'clarifai'
 import 'tachyons'
@@ -232,9 +231,11 @@ class App extends Component {
           <title>FaceTector</title>
           <link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
           <meta name="description" content="We detect faces from your image and give you score!" />
+          <meta property="title" content="Facetector" />
+          <meta property="description" content="We detect faces from your image and give you score." />
           <meta property="og:title" content="Facetector" />
           <meta property="og:description" content="We detect faces from your image and give you score." />
-          <meta property="og:image" content={metaImage} />
+          <meta property="og:image" content='https://user-images.githubusercontent.com/42050917/52555716-d694e900-2e2d-11e9-8d21-ea794b5a8177.png' />
           <meta property="og:url" content="https://facetector.herokuapp.com/" />
           <meta property="og:site_name" content="Facetector by Wonmi" />
           <meta name="twitter:card" content="We detect faces from your image and give you score!" />
