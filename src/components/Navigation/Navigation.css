@@ -4,6 +4,16 @@
     align-items: center;
 }
 
+.navi__sns {
+    display: flex;
+}
+
+@media only screen and (max-width: 755px) {
+    .navi__sns {
+        display: none;
+    }
+}
+
 .navi__menu {
     margin-left: 1rem;
 }
@@ -14,6 +24,13 @@
     padding: 1rem;
     font-weight: 600;
     cursor: pointer;
+}
+
+
+@media only screen and (max-width: 540px) {
+  .navi__menu {
+    margin-right: -1rem;
+  }
 }
 
 .navi__twitter, .navi__github {

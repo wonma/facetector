@@ -22,7 +22,7 @@ class Signin extends Component {
 
 
     onWrongUser = () => {
-        document.querySelector('#signIpBtn').textContent = 'SIGN IN'
+        document.querySelector('#signInBtn').textContent = 'SIGN IN'
         document.querySelector('#check-message').classList.remove('show-check-message')
         document.querySelector('#check-message').classList.add('show-check-message')
     }

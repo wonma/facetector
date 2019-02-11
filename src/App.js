@@ -8,6 +8,9 @@ import ImageSearchForm from './components/ImageSearchForm/ImageSearchForm'
 import FaceRecognition from './components/FaceRecognition/FaceRecognition'
 import Rank from './components/Rank/Rank'
 import Particles from 'react-particles-js'
+import MetaTags from 'react-meta-tags';
+import AutoUrl from './components/AutoUrl/AutoUrl'
+
 // import Clarifai from 'clarifai'
 import 'tachyons'
 
@@ -31,10 +34,6 @@ const particleOptions = {
     }
   }
 }
-
-// const app = new Clarifai.App({
-//   apiKey: '61feadaf01f14a0b9f76fc02eaf5bf7d'
-// });
 
 const initialState = {
   input: '',
@@ -87,7 +86,9 @@ class App extends Component {
   }
 
   updateBoxsize = (box) => {
-    this.setState({ box: box})
+    this.setState({
+      input: ''
+    })
   }
 
   // sign in API request하면서 user정보를 res(밑의 argument에서는 'data')로 받아옴
@@ -123,6 +124,10 @@ class App extends Component {
   // lot out 버튼 누르면 setState가 첫 상태로 리셋 됨
   onLogOut = () => {
     this.setState(initialState)
+  }
+
+  onAutoUrl = () => {
+    document.querySelector('#imgSearchInput').value =`https://dentistry.osu.edu/sites/default/files/news-stories/gkas-kids.jpg`
   }
 
   onClickEvent = () => {
@@ -218,6 +223,12 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
+        <MetaTags>
+          <title>FaceTector</title>
+          <meta name="description" content="We detect faces from your image and give you score!" />
+          <meta property="og:title" content="Facetector" />
+          <meta property="og:image" content="./images/favicon.png" />
+        </MetaTags>
         <Particles className='particles'
           params={particleOptions}
         />
@@ -226,7 +237,7 @@ class App extends Component {
           onRouteChange={this.onRouteChange} // log out버튼에 셋팅되어 있음. 누르면 signIn route로 setState되도록.
           onLogOut={this.onLogOut}
         />
-        <div className='header-wrapper'>
+        <div className='main-wrapper'>
           {
             this.state.route === 'signin' || this.state.route === 'signup'
               ? <Hero           // 아래 세 개를 signIn, singUp 컴포넌트에 전달하고 있음
@@ -253,6 +264,7 @@ class App extends Component {
                   name={this.state.user.name}
                   onRouteChange={this.onRouteChange}
                 />
+                <AutoUrl onAutoUrl={this.onAutoUrl} />
               </div>
           }     
         </div>
