@@ -1,10 +1,8 @@
 
 .auto-url {
-    position: relative;     
+    position: fixed;    
     width: 70px;
     height: 50px;
-    top: 450px;
-    right: 35px;
     padding: .5rem;
     line-height: 1.4;
     display: flex;
@@ -22,7 +20,7 @@
 }
 
 .auto-url:hover {
-    background-color: rgba(162, 250, 250, 0.3);
+    background-color: rgb(245, 255, 255);
 }
 
 .auto-url__text {
@@ -31,13 +29,27 @@
 
 @media only screen and (max-width: 540px) {
     .auto-url {
-        position: fixed;
-        bottom: 50px;
+        bottom: 0px;
         left: -1px;
         border-radius: 0 8px 8px 0;
         height: 100px;
     }
-    .auto-url__text {
+}
 
+@media only screen and (min-width: 540px) {
+    .auto-url {
+        top: 380px;
+        left: -1px;
+        border-radius: 0 8px 8px 0;
+        height: 100px;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .auto-url {
+        top: 330px;
+        left: 20%;
+        border-radius: 8px;
+        height: 100px;
     }
 }

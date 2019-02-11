@@ -8,12 +8,6 @@
     display: flex;
 }
 
-@media only screen and (max-width: 755px) {
-    .navi__sns {
-        display: none;
-    }
-}
-
 .navi__menu {
     margin-left: 1rem;
 }
@@ -29,7 +23,7 @@
 
 @media only screen and (max-width: 540px) {
   .navi__menu {
-    margin-right: -1rem;
+    margin-right: 0;
   }
 }
 
@@ -42,8 +36,21 @@
     text-decoration: none;
 }
 
+@media only screen and (max-width: 540px) {
+
+    .navi__logout.navi__menu {
+        padding-right: 0;
+        margin-left: 0;
+    }
+
+    .navi__github {
+        display: none;
+    }
+}
+
 .navi__twitter {
-    border: 1px solid rgba(23, 160, 240, 0.1)
+    border: 1px solid rgba(23, 160, 240, 0.1);
+    margin-right: -.5rem
 }
 
 .navi__github {

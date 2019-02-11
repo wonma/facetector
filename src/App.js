@@ -14,6 +14,7 @@ import AutoUrl from './components/AutoUrl/AutoUrl'
 // import Clarifai from 'clarifai'
 import 'tachyons'
 
+
 const particleOptions = {
   particles: {
     number: {
@@ -87,7 +88,7 @@ class App extends Component {
 
   updateBoxsize = (box) => {
     this.setState({
-      input: ''
+      box: box
     })
   }
 
@@ -127,7 +128,10 @@ class App extends Component {
   }
 
   onAutoUrl = () => {
-    document.querySelector('#imgSearchInput').value =`https://dentistry.osu.edu/sites/default/files/news-stories/gkas-kids.jpg`
+    document.querySelector('#imgSearchInput').value =`https://www.empoweryourhealth.org/sites/all/images/kids-health.jpg`
+    this.setState({
+      input: `https://www.empoweryourhealth.org/sites/all/images/kids-health.jpg`
+    })
   }
 
   onClickEvent = () => {
@@ -248,24 +252,24 @@ class App extends Component {
                 onGuestLogin={this.onGuestLogin}
               />
               : <div>
-                <Rank name={this.state.user.name} rank={this.state.user.entries} />
-                <ImageSearchForm
-                  onInputChange={this.onInputChange}
-                  onClickEvent={this.onClickEvent} />
-                <FaceRecognition
-                  imageUrl={this.state.imgUrl}
-                  boxPosition={this.state.box}
-                  foundFaces={this.state.foundFaces}
-                  isLoading={this.state.loading}
-                  isError={this.state.err}
-                  noImgAtStart={this.state.noImgAtStart}
-                  onImgLoadErr={this.onImgLoadErr}
-                  onImgLoad={this.onImgLoad}
-                  name={this.state.user.name}
-                  onRouteChange={this.onRouteChange}
-                />
-                <AutoUrl onAutoUrl={this.onAutoUrl} />
-              </div>
+                  <Rank name={this.state.user.name} rank={this.state.user.entries} />
+                  <ImageSearchForm
+                    onInputChange={this.onInputChange}
+                    onClickEvent={this.onClickEvent} />
+                  <FaceRecognition
+                    imageUrl={this.state.imgUrl}
+                    boxPosition={this.state.box}
+                    foundFaces={this.state.foundFaces}
+                    isLoading={this.state.loading}
+                    isError={this.state.err}
+                    noImgAtStart={this.state.noImgAtStart}
+                    onImgLoadErr={this.onImgLoadErr}
+                    onImgLoad={this.onImgLoad}
+                    name={this.state.user.name}
+                    onRouteChange={this.onRouteChange}
+                  />
+                  <AutoUrl onAutoUrl={this.onAutoUrl} />
+                </div>
           }     
         </div>
       </div>
