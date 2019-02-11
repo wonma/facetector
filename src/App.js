@@ -229,9 +229,13 @@ class App extends Component {
       <div className='App'>
         <MetaTags>
           <title>FaceTector</title>
+          <link rel="shortcut icon" type="image/png" href="./images/favicon.png" />
           <meta name="description" content="We detect faces from your image and give you score!" />
           <meta property="og:title" content="Facetector" />
+          <meta property="og:description" content="We detect faces from your image and give you score." />
           <meta property="og:image" content="./images/favicon.png" />
+          <meta name="twitter:card" content="We detect faces from your image and give you score!" />
+          <meta property="og:url" content="https://facetector.herokuapp.com/" />
         </MetaTags>
         <Particles className='particles'
           params={particleOptions}
