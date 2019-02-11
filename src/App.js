@@ -236,7 +236,7 @@ class App extends Component {
           <meta property="og:title" content="Facetector" />
           <meta property="og:description" content="We detect faces from your image and give you score." />
           <meta property="og:image" content='https://user-images.githubusercontent.com/42050917/52555716-d694e900-2e2d-11e9-8d21-ea794b5a8177.png' />
-          <meta property="og:url" content="https://facetector.herokuapp.com/" />
+          <meta property="og:url" content="facetector.herokuapp.com/" />
           <meta property="og:site_name" content="Facetector by Wonmi" />
           <meta name="twitter:card" content="We detect faces from your image and give you score!" />
         </MetaTags>
