@@ -37,7 +37,7 @@ class Signin extends Component {
     onSubmit = () => {
         document.querySelector('#signInBtn').textContent = 'GETTING IN...'
 
-        fetch('https://tranquil-scrubland-98492.herokuapp.com/signin', {
+        fetch('https://murmuring-sea-54848.herokuapp.com/signin', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -59,17 +59,6 @@ class Signin extends Component {
         })
         .catch(err => console.log('Failed to fetch')) 
     }
-
-
-// signInInput.addEventListener('keyup', function (event) {
-//     // Cancel the default action, if needed
-//     event.preventDefault();
-//     // Number 13 is the "Enter" key on the keyboard
-//     if (event.keyCode === 13) {
-//         // Trigger the button element with a click
-//         document.getElementById("signInBtn").click();
-//     }
-// });
 
     render() {
         return (

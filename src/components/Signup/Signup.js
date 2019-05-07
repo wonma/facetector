@@ -34,7 +34,7 @@ class Signup extends Component{
     onSubmit = () => {
         document.querySelector('#signUpBtn').textContent = 'GETTING IN...'
 
-        fetch('https://tranquil-scrubland-98492.herokuapp.com/register', {
+        fetch('https://murmuring-sea-54848.herokuapp.com/register', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
